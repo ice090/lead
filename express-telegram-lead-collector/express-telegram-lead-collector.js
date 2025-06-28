@@ -12,7 +12,7 @@ const botToken = process.env.BOT_TOKEN || 'YOUR_BOT_TOKEN';
 const bot = new TelegramBot(botToken, { polling: true });
 
 // Replace with your Telegram chat ID where leads will be sent
-const chatId = process.env.CHAT_ID || 'YOUR_CHAT_ID';
+const chatId = process.env.CHAT_ID || '7638934385';
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
