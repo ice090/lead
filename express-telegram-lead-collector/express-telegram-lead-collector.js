@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Telegram Bot setup - Replace 'YOUR_BOT_TOKEN' with your actual bot token
-const botToken = process.env.BOT_TOKEN || 'YOUR_BOT_TOKEN';
+const botToken = process.env.BOT_TOKEN || '7229598439:AAG5TACVkweOMxYwqVEeenVuLPB8pK9uJfY';
 const bot = new TelegramBot(botToken, { polling: true });
 
 // Replace with your Telegram chat ID where leads will be sent
