@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lead Capture Form</title>
+  <style>
+    body { font-family: sans-serif; max-width: 400px; margin: auto; padding: 20px; background-color: #f0f2f5; }
+    h1 { text-align: center; }
+    .form-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; }
+    input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    button { width: 100%; padding: 10px; background-color: #1877f2; color: white; border: none; border-radius: 4px; }
+    button:hover { background-color: #165dd1; }
+    .response-message { text-align: center; margin-top: 10px; font-weight: bold; display: none; }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>Lead Capture Form</h1>
+  <div class="form-container">
+    <form id="lead-form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input required type="text" id="name" name="name" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input required type="email" id="email" name="email" />
+      </div>
+      <button type="submit">Submit</button>
+      <p class="response-message success" id="success">Lead submitted successfully!</p>
+      <p class="response-message error" id="error">Something went wrong. Try again.</p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("lead-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const userAgent = navigator.userAgent;
+
+      try {
+        const res = await fetch('/api/submit-lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, userAgent })
+        });
+
+        if (res.ok) {
+          document.getElementById("success").style.display = "block";
+          document.getElementById("error").style.display = "none";
+          e.target.reset();
+        } else {
+          throw new Error("Submission failed");
+        }
+      } catch (err) {
+        document.getElementById("success").style.display = "none";
+        document.getElementById("error").style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
