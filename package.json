@@ -1,0 +1,12 @@
+{
+  "name": "vercel-lead-collector",
+  "version": "1.0.0",
+  "description": "Lead capture form with Telegram bot integration via Vercel serverless functions",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "vercel start"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0"
+  }
+}
